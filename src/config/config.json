@@ -4,20 +4,23 @@
     "password": 1234,
     "database": "database_development",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "timezone": "America/Sao_Paulo"
   },
   "test": {
     "username": "postgres",
     "password": 1234,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "timezone": "America/Sao_Paulo"
   },
   "production": {
     "username": "postgres",
     "password": 1234,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "timezone": "America/Sao_Paulo"
   }
 }
