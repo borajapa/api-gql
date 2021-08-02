@@ -1,15 +1,25 @@
 'use strict';
 
+var bcryptjs = require('bcryptjs');
+
+const salt = bcryptjs.genSaltSync();
+const pass = bcryptjs.hashSync("admin123", salt);
+
+
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('users', [{
-      name: 'Admin',
-      email: 'admin@admin.com',
-      password: 'admin',  
-    }], {});
-  },
-// verificar se o down exclui o banco de dados inteiro
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('users', null, {});    
-  }
+    up: function (queryInterface, Sequelize) {
+        return queryInterface.bulkInsert('user', [{
+            name: "superRoot",
+            email: "super@root.com.br",            
+            password: pass,            
+        }], {});
+    },
+
+    down: function (queryInterface, Sequelize) {
+        return queryInterface.bulkDelete('user', null, [{
+            name: "superRoot",
+            email: "super@root.com.br",            
+            password: pass,            
+        }]);
+    }
 };
