@@ -3,7 +3,7 @@
 import {genSaltSync, hashSync, compareSync} from 'bcryptjs';
 
 module.exports = function (sequelize, DataTypes) {
-    var user = sequelize.define('user', {
+    var user = sequelize.define('Users', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -23,8 +23,8 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true
         }        
     }, {
-        timestamps: false,
-        underscored: true,
+        timestamps: true,
+        underscored: false,
         freezeTableName: true,
         hooks: {
             beforeCreate: (user, options) => {
