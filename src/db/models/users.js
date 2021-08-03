@@ -23,6 +23,8 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true
         }        
     }, {
+        sequelize,
+        paranoid: true,    
         timestamps: true,
         underscored: false,
         freezeTableName: true,

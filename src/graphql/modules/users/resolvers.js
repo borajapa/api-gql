@@ -1,16 +1,24 @@
-// import User from '../../../models/User';
+import {Users} from '../../../db/models/index.js';
 
 export default {    
     Query: {
-        users: () => User.find(),
-        user: (_, { id}) => User.findById(id),
+        users: () => Users.findAll(),
+        user: (_, { id}) => Users.findByPk(id),
     },
     Mutation: {
-        createUser: (_, { data }) => User.create(data),
-        updateUser: (_, { id, data }) => User.findOneAndUpdate(id, data, {new: true}),
-        deleteUser: async (_, { id}) => {
-            const deleted = await User.findOneAndDelete(id);
-            return !!deleted;
+        createUser: async (_, { data }) => {
+            /* Utilizamos db pois a instancia de usuário está completa dentro de db */ 
+            return await Users.create(data)
+        },        
+        updateUser: async (_, {data, id }) => {
+            const user = await Users.findByPk(id)
+            if (!user) { throw new Error(`Usuário com id ${id} não encontrado`)}
+            return await user.update(data)
+        },
+        deleteUser: async (_, { data, id}) => {
+            const user = await Users.findByPk(id);
+            if (!user) { throw new Error(`Usuário com id ${id} não encontrado`)}
+            return await !!user.destroy(data, id);
         }
     },
 };

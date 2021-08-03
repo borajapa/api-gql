@@ -1,0 +1,7 @@
+type Profile {
+    profile_name: String
+    user: User!
+    age: String
+    
+
+}
