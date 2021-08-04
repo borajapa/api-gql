@@ -3,7 +3,7 @@
 import {genSaltSync, hashSync, compareSync} from 'bcryptjs';
 
 module.exports = function (sequelize, DataTypes) {
-    var user = sequelize.define('Users', {
+    var users = sequelize.define('users', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -21,7 +21,11 @@ module.exports = function (sequelize, DataTypes) {
         password: {
             type: DataTypes.STRING(250),
             allowNull: true
-        }        
+        },
+        age: {
+            type: DataTypes.STRING(3),
+            allowNull: false
+        }     
     }, {
         sequelize,
         paranoid: true,    
@@ -43,5 +47,9 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-    return user;
+
+    users.associate = models => {
+        users.hasMany(models.profile, {foreignKey: 'user_id'})
+    }
+    return users;
 };

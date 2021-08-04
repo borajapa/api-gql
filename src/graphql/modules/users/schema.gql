@@ -1,7 +1,8 @@
 type User {
     id: ID!
     name: String!
-    email: String!       
+    email: String!
+    age: Integer!    
 }
 
 input UserInput {
@@ -9,6 +10,7 @@ input UserInput {
     name: String!   
     email: String!
     password: String!
+    age: Integer!
 }
 
 type Query {

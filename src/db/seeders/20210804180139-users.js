@@ -8,18 +8,20 @@ const pass = bcryptjs.hashSync("admin123", salt);
 
 module.exports = {
     up: function (queryInterface, Sequelize) {
-        return queryInterface.bulkInsert('Users', [{
+        return queryInterface.bulkInsert('users', [{
             name: "superRoot",
             email: "super@root.com.br",            
-            password: pass,            
+            password: pass,
+            age: 999
         }], {});
     },
 
     down: function (queryInterface, Sequelize) {
-        return queryInterface.bulkDelete('Users', null, [{
+        return queryInterface.bulkDelete('users', null, [{
             name: "superRoot",
             email: "super@root.com.br",            
-            password: pass,            
+            password: pass,
+            age: 999           
         }]);
     }
 };

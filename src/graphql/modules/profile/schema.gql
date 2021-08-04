@@ -1,0 +1,20 @@
+type Profile {
+    id: ID!
+    role: String!    
+}
+
+input ProfileInput {
+    id: ID!
+    role: String!
+}
+
+type Query {
+    allProfiles: [Profile!]!
+    profile(id: ID!): Profile!
+}
+
+type Mutation {
+    createProfile(data: ProfileInput!): Profile!
+    updateProfile(id: ID!, data: ProfileInput!): Profile!
+    deleteProfile(id: ID!): Boolean
+}
